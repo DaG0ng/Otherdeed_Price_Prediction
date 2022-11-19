@@ -135,7 +135,18 @@ with row1_2:
     fig.update_yaxes(title_text="Floor Price", secondary_y=True, showgrid=False, range=[0,5])
     chart(fig)
 
+dfTrade=pd.read_csv("recent_sales.csv")
+fig = px.scatter(dfTrade, x="Trade Time", y="Price in USD",hover_name="token_ids",range_x=["2022-11-01","2022-11-09"],range_y=["1800","3000"],
+                title="Recent Sales"
+                )
+chart(fig)
 
+prediction_df=pd.read_csv("df_final.csv")
+fig = px.line(prediction_df, x="token_ids", y='price', markers=True,range_x=["500","550"],range_y=[10000,50000],title="Otherdeed Prediction Value in USD",
+             labels={
+                     "token_ids": "# of Otherdeed",
+                     "price": "USD Dollars"})
+chart(fig)
 
 
 
