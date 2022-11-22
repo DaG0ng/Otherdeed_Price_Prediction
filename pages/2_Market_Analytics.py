@@ -111,7 +111,7 @@ chart(fig)
 
 st.subheader("Latest Predicted Price of Otherdeeds in USD")
 prediction_df=pd.read_csv("df_final.csv")
-fig = px.line(prediction_df, x="token_ids", y='price', markers=True,range_x=["0","100000"],range_y=[0,800000],
+fig = px.line(prediction_df, x="token_ids", y='price', markers=True,range_x=["500","550"],range_y=[0,800000],
              labels={
                      "token_ids": "# of Otherdeed",
                      "price": "USD Dollars"})
