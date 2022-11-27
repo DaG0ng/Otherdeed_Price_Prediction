@@ -9,9 +9,12 @@ st.title('Search Your Interested Otherdeed')
 
 token_id = st.text_input('Input the token ID of your interested Otherdeed here', placeholder='Search Otherdeeds...')
 
-if token_id == '-1':
+
+if len(token_id)>0 and not token_id.lstrip('-').isnumeric():
+    st.write('Sorry, please input a positive number between [1, 100000]')
+elif len(token_id)>0 and (int(token_id)<0 or int(token_id)>100000):
     st.write('Sorry, this token ID does not exist')
-elif token_id == '1':
+elif len(token_id) > 0:
     st.write('')
     st.write('')
     row1_1, row1_space1, row1_2, row1_space1, row1_3 = st.columns(
