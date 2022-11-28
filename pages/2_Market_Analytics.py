@@ -66,7 +66,7 @@ with row1_1:
     )
     fig.update_xaxes(title_text="Date")
     fig.update_yaxes(title_text="Volume", secondary_y=False)
-    fig.update_yaxes(title_text="Average Price", secondary_y=True, gridcolor='grey')
+    fig.update_yaxes(title_text="Average Price (USD)", secondary_y=True, gridcolor='grey')
     chart(fig)
 
 with row1_2:
@@ -92,10 +92,10 @@ with row1_2:
     )
     fig.update_xaxes(title_text="Date")
     if period == 'Last 30 days':
-        fig.update_yaxes(title_text="Celing Price", secondary_y=False, showgrid=False, range=["0", "50000"])
+        fig.update_yaxes(title_text="Celing Price (USD)", secondary_y=False, showgrid=False, range=["0", "50000"])
     else:
-        fig.update_yaxes(title_text="Celing Price", secondary_y=False, showgrid=False, range=["0", "20000"])
-    fig.update_yaxes(title_text="Floor Price", secondary_y=True, showgrid=False, range=["0", "10000"])
+        fig.update_yaxes(title_text="Celing Price (USD)", secondary_y=False, showgrid=False, range=["0", "20000"])
+    fig.update_yaxes(title_text="Floor Price (USD)", secondary_y=True, showgrid=False, range=["0", "10000"])
     chart(fig)
 
 st.subheader("Rencent Sales")
@@ -106,7 +106,8 @@ elif period == 'Last 7 days':
     date_range = ["2022-11-21","2022-11-27"]
 else:
     date_range = ["2022-10-28","2022-11-27"]
-fig = px.scatter(dfTrade, x="Trade Time", y="Price in USD",hover_name="token_ids",range_x=date_range,range_y=["1800","3000"])
+fig = px.scatter(dfTrade, x="Trade Time", y="Price in USD",hover_name="token_ids",range_x=date_range,range_y=["1800","3000"],
+                 labels={"Price in USD": "Price (USD)"})
 chart(fig)
 
 st.markdown('---')
@@ -121,8 +122,6 @@ fig = px.line(lstm_df, x="Date", y="Forecast", markers=True,
                 "Forecast": "Predicted Average Price (USD)"
               })
 chart(fig)
-
-
 
 st.subheader("Latest Predicted Price of Otherdeeds")
 prediction_df=pd.read_csv("df_price_prediction.csv")
