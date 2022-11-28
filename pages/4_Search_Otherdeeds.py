@@ -9,6 +9,7 @@ from PIL import Image
 @st.cache
 def get_otherdeeds_dataset():
     df = pd.read_csv("with_images.csv")
+    df = df.groupby("token_ids").first()
     return df
 
 @st.cache
