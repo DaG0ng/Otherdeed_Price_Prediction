@@ -8,29 +8,7 @@ from PIL import Image
 
 @st.cache
 def get_otherdeeds_dataset():
-    data = pd.read_csv("preprocessed_dataset/new_trade_df.csv")
-    trades_df = pd.DataFrame(data)
-    nft_df_1 = pd.read_csv("preprocessed_dataset/ntf_df1.csv")
-    nft_df_2 = pd.read_csv("preprocessed_dataset/ntf_df2.csv")
-    nft_df_3 = pd.read_csv("preprocessed_dataset/ntf_df3.csv")
-    nft_df_4 = pd.read_csv("preprocessed_dataset/ntf_df4.csv")
-    nft_df_5 = pd.read_csv("preprocessed_dataset/ntf_df5.csv")
-    nft_df = pd.concat([nft_df_1, nft_df_2, nft_df_3, nft_df_4, nft_df_5])
-    nft_df=nft_df.rename(columns={"token_id":"token_ids"})
-    trades_df = trades_df[["token_ids","block_timestamp","price_usd"]]
-    temp = []
-    for i in nft_df['metadata']:
-        js = json.loads(json.dumps(eval(i)))
-        temp.append(js['image'])
-    nft_df['image'] = temp
-    nft_df = nft_df[['token_ids', 'image', 'Artifact', 'Category',
-        'Eastern Resource', 'Eastern Resource Tier', 'Environment',
-        'Environment Tier', 'Koda', 'Northern Resource',
-        'Northern Resource Tier', 'Obelisk Piece', 'Plot', 'Sediment',
-        'Sediment Tier', 'Southern Resource', 'Southern Resource Tier',
-        'Western Resource', 'Western Resource Tier']]
-    df = nft_df.merge(trades_df, on='token_ids', how='left')
-    df = df.groupby("token_ids").first()
+    df = pd.read_csv("with_images.csv")
     return df
 
 @st.cache

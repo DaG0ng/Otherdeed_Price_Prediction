@@ -7,7 +7,32 @@ from plotly.subplots import make_subplots
 
 @st.cache
 def get_processed_df():
-    df = pd.read_csv("with_images.csv")
+    data = pd.read_csv("preprocessed_dataset/new_trade_df.csv")
+    trades_df = pd.DataFrame(data)
+    nft_df_1 = pd.read_csv("preprocessed_dataset/ntf_df1.csv")
+    nft_df_2 = pd.read_csv("preprocessed_dataset/ntf_df2.csv")
+    nft_df_3 = pd.read_csv("preprocessed_dataset/ntf_df3.csv")
+    nft_df_4 = pd.read_csv("preprocessed_dataset/ntf_df4.csv")
+    nft_df_5 = pd.read_csv("preprocessed_dataset/ntf_df5.csv")
+    nft_df = pd.concat([nft_df_1, nft_df_2, nft_df_3, nft_df_4, nft_df_5])
+    nft_df=nft_df.rename(columns={"token_id":"token_ids"})
+    trades_df = trades_df[["token_ids","block_timestamp","price_usd"]]
+    nft_df = nft_df[['token_ids', 'Artifact', 'Category',
+        'Eastern Resource', 'Eastern Resource Tier', 'Environment',
+        'Environment Tier', 'Koda', 'Northern Resource',
+        'Northern Resource Tier', 'Obelisk Piece', 'Plot', 'Sediment',
+        'Sediment Tier', 'Southern Resource', 'Southern Resource Tier',
+        'Western Resource', 'Western Resource Tier']]
+    temp = []
+    for i in nft_df['Koda']:
+        if (np.isnan(i)):
+            temp.append('n')
+        else:
+            temp.append('y')
+    nft_df['Koda'] = temp
+    df = nft_df.merge(trades_df, on='token_ids', how='left')
+    df = df.dropna(subset=["price_usd"])
+    df = df.groupby("token_ids").first()
     return df
 
 @st.cache
