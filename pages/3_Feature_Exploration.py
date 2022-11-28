@@ -7,7 +7,7 @@ from plotly.subplots import make_subplots
 
 @st.cache
 def get_processed_df():
-    df = pd.read_csv("with_images.csv")
+    data = pd.read_csv("with_images.csv")
     return df
 
 @st.cache
