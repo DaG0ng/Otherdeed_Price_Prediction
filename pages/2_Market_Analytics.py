@@ -109,12 +109,28 @@ else:
 fig = px.scatter(dfTrade, x="Trade Time", y="Price in USD",hover_name="token_ids",range_x=date_range,range_y=["1800","3000"])
 chart(fig)
 
-st.subheader("Latest Predicted Price of Otherdeeds in USD")
+st.markdown('---')
+
+st.header("Prediction Results")
+
+st.subheader("Average Price Trend")
+lstm_df = pd.read_csv('mean_val_pred.csv')
+fig = px.line(lstm_df, x="Date", y="Forecast", markers=True, 
+              labels={
+                "Date": "Date",
+                "Forecast": "Predicted Average Price (USD)"
+              })
+chart(fig)
+
+
+
+st.subheader("Latest Predicted Price of Otherdeeds")
 prediction_df=pd.read_csv("df_price_prediction.csv")
-fig = px.line(prediction_df, x="token_ids", y='price', markers=True,range_x=["500","550"],range_y=[0,100000],
+fig = px.scatter(prediction_df, x="token_ids", y='price', range_x=["500","550"],range_y=[0,100000],
              labels={
-                     "token_ids": "# of Otherdeed",
-                     "price": "USD Dollars"})
+                     "token_ids": "Token ID of Otherdeed",
+                     "price": "Preicted Price (USD)"})
+fig.update_traces(marker=dict(color='red'))
 chart(fig)
 
 
