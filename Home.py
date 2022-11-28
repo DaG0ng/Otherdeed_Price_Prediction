@@ -21,7 +21,7 @@ def get_trades_dataset():
 @st.cache
 def get_image(address):
     image = Image.open(address)
-    st.image(image)
+    return image
 
 st.set_page_config(layout='wide')
 
@@ -58,20 +58,20 @@ st.subheader('🔥Hot Otherdeeds🔥')
 with st.container():
   deed1, deed2, deed3, deed4, deed5, deed6 = st.columns(6)
   with deed1:
-    get_image('images/1.jpg')
-    # st.image(image)
+    image = get_image('images/1.jpg')
+    st.image(image)
   with deed2:
-    get_image('images/2.jpg')
-    # st.image(image)
+    image = get_image('images/2.jpg')
+    st.image(image)
   with deed3:
-    get_image('images/3.jpg')
-    # st.image(image)
+    image = get_image('images/3.jpg')
+    st.image(image)
   with deed4:
-    get_image('images/4.jpg')
-    # st.image(image)
+    image = get_image('images/4.jpg')
+    st.image(image)
   with deed5:
-    get_image('images/5.jpg')
-    # st.image(image)
+    image = get_image('images/5.jpg')
+    st.image(image)
   with deed6:
-    get_image('images/6.jpg')
-    # st.image(image)
+    image = get_image('images/6.jpg')
+    st.image(image)
