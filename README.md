@@ -4,7 +4,7 @@
 
 **Estimate the Next Trade Price for Otherdeeds in Otherside**
 
-### [Enter the website from here.](https://dag0ng-otherdeed-price-prediction-home-j5zx0s.streamlit.app/)
+### [Enter the website from here.](https://dag0ng-otherdeed-price-prediction-home-ixi30b.streamlit.app/)
 
 **Team: Datavengers**
 
