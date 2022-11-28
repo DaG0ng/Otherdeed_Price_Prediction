@@ -18,6 +18,11 @@ def get_trades_dataset():
   trades_dataset = pd.read_csv('preprocessed_dataset/new_trade_df.csv')
   return trades_dataset
 
+@st.cache
+def get_image(address):
+    image = Image.open(address)
+    st.image(image)
+
 st.set_page_config(layout='wide')
 
 row0_1, row0_spacer1, row0_2, row0_spacer2 = st.columns(
@@ -53,20 +58,20 @@ st.subheader('🔥Hot Otherdeeds🔥')
 with st.container():
   deed1, deed2, deed3, deed4, deed5, deed6 = st.columns(6)
   with deed1:
-    image = Image.open('images/1.jpg')
-    st.image(image)
+    get_image('images/1.jpg')
+    # st.image(image)
   with deed2:
-    image = Image.open('images/2.jpg')
-    st.image(image)
+    get_image('images/2.jpg')
+    # st.image(image)
   with deed3:
-    image = Image.open('images/3.jpg')
-    st.image(image)
+    get_image('images/3.jpg')
+    # st.image(image)
   with deed4:
-    image = Image.open('images/4.jpg')
-    st.image(image)
+    get_image('images/4.jpg')
+    # st.image(image)
   with deed5:
-    image = Image.open('images/5.jpg')
-    st.image(image)
+    get_image('images/5.jpg')
+    # st.image(image)
   with deed6:
-    image = Image.open('images/6.jpg')
-    st.image(image)
+    get_image('images/6.jpg')
+    # st.image(image)
